@@ -1,0 +1,16 @@
+{
+  "name": "cicd-yuzh0421",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo test success"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "uuid": "^13.0.0"
+  }
+}
