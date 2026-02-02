@@ -17,7 +17,4 @@ phases:
       - echo ${ZIP_FILE}
   build:
     commands:
-      - echo preparing zip archive
-      - zip -r $ZIP_FILE . -x buildspecs/* -x .gitignore
-      - echo "Deploying lambda function"
-      - aws lambda update-function-code --function-name ${FUNCTION_NAME} --zip-file fileb://${ZIP_FILE}
+      - aws lambda invoke --function-name $FUNCTION_NAME --cli-binary-format raw-in-base64-out --payload '{"key":"value"}' response.json
