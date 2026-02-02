@@ -4,11 +4,18 @@ phases:
   install:
     runtime-versions:
       nodejs: 20.x
+    commands:
+      - echo "install extra packages"
+      - yum install zip -y
+  pre_build:
+    commands:
+      - export FUNCTION_NAME="cicd-demo"
+      - export ZIP_FILE=lambda.zip
   build:
     commands:
-      - echo Build started on `date`
-      - npm install
-artifacts:
-  files:
-    - '**/*'
-  discard-paths: no
+      - echo preparing zip archive
+      - zip -r $ZIP_FILE .
+      - echo "Deploy lambda function"
+      - aws lambda update-function-code \
+        --function-name  $FUNCTION_NAME \
+        --zip-file fileb://$ZIP_FILE
